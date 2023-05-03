@@ -1,5 +1,7 @@
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+//import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
+require('dotenv').config();
+const weaviate = require('weaviate-ts-client');
 // Instantiate the client with the auth config
 const client = weaviate.client({
   scheme: 'https',
@@ -84,10 +86,16 @@ async function getProfiles(description: string) {
             .get()
             .withClassName('Profile')
             .withNearText({concepts: [description]})
+            .wqsdqsdq
+            .do()
         console.log(res);
     } catch (err) {
         console.error(err);
     }
 }
 
-createProfile('John Doe', 'A person who likes to code');
+
+getSchema();
+//createProfile('John Doe', 'A person who likes to code');
+
+getProfiles('A person who likes to code')
