@@ -135,7 +135,7 @@ export async function getProfiles(description: string, limit: number = 10) {
     }
 }
 
-
+console.log("hello world");
 
 
 

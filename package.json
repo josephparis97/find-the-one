@@ -2,12 +2,13 @@
   "name": "find-the-one",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "weaviate": "ts-node src/pages/api/weviate.ts"
+    "weaviate": "ts-node src/pages/api/weaviate.ts"
   },
   "dependencies": {
     "@types/node": "18.16.3",
