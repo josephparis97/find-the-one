@@ -8,12 +8,17 @@ const { publicRuntimeConfig } = getConfig();
 //const weaviate = require('weaviate-ts-client');
 // Instantiate the client with the auth config
 
+
 const client = weaviate.client({
   scheme: 'https',
   host: 'find-the-one-cluster-ob31sefj.weaviate.network',
-  apiKey: new weaviate.ApiKey(process.env.WEVIATE_KEY as string),
-  headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_KEY as string},
+  apiKey: new weaviate.ApiKey(process.env.NEXT_PUBLIC_WEVIATE_KEY as string),
+  headers: { 'X-OpenAI-Api-Key':process.env.NEXT_PUBLIC_OPENAI_KEY as string},
 });
+
+let a = 2;
+
+
 
 let schema = {
     "classes": [
@@ -147,7 +152,7 @@ export async function getProfiles(description: string, limit: number = 10) {
 
 
 
-console.log("hello world");
+console.log("hello world" + a);
 
 
 async function main() {
