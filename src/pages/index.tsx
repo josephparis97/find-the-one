@@ -21,25 +21,29 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState<Profile[]>([]);
 
   const handleSearch = async (event: FormEvent) => {
-  event.preventDefault(); // Add this line to prevent default form submission behavior
+    console.log("handleSearch");
+    event.preventDefault(); // Add this line to prevent default form submission behavior
 
-  if (searchInput) {
-    console.log("searchInput"+searchInput);
-    try {
-      const response = await getProfiles(searchInput);
-      if (!response) {
-        return;
+    //log client informations
+    console.log("TEST");
+
+    if (searchInput) {
+      console.log("searchInput"+searchInput);
+      try {
+        const response = await getProfiles(searchInput);
+        if (!response) {
+          return;
+        }
+        console.log("response"+response.data.Get.Profile);
+        setSearchResults(response.data.Get.Profile);
+      } catch (err) {
+        console.error(err);
       }
-      console.log("response"+response.data.Get.Profile);
-      setSearchResults(response.data.Get.Profile);
-    } catch (err) {
-      console.error(err);
+    } else {
+      console.log("else");
+      setSearchResults([]);
     }
-  } else {
-    console.log("else");
-    setSearchResults([]);
-  }
-};
+  };
   
   
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {

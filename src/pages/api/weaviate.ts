@@ -1,9 +1,19 @@
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-import client from './weaviateClient';
+import getConfig from 'next/config';
+import * as dotenv from 'dotenv';
+
+const { publicRuntimeConfig } = getConfig();
 //const client = require('./weaviateClient');
 //require('dotenv').config();
 //const weaviate = require('weaviate-ts-client');
 // Instantiate the client with the auth config
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'find-the-one-cluster-ob31sefj.weaviate.network',
+  apiKey: new weaviate.ApiKey(process.env.WEVIATE_KEY as string),
+  headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_KEY as string},
+});
 
 let schema = {
     "classes": [
@@ -135,7 +145,19 @@ export async function getProfiles(description: string, limit: number = 10) {
     }
 }
 
+
+
 console.log("hello world");
 
 
+async function main() {
+  try {
+    const schema = await getSchema();
+    console.log("schema", schema);
+  } catch (err) {
+    console.error(err);
+  }
+  console.log("hello world");
+}
 
+main();
